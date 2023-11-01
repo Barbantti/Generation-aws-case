@@ -1,0 +1,56 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./prismaClient"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Student {
+  guid_student        Int          @id @default(autoincrement())
+  firstName           String       @db.VarChar(75)
+  lastName            String       @db.VarChar(75)
+  age                 String       @db.VarChar(75)
+  birthDate           DateTime     @db.Date
+  firstSemesterGrade  Float        @default(0)
+  secondSemesterGrade Float        @default(0)
+  finalGradeAverage   Float        @default(0)
+  createdAt           DateTime     @default(now())
+  updatedAt           DateTime     @updatedAt
+  enrollments         Enrollment[]
+}
+
+model Teacher {
+  guid_teacher         Int          @id @default(autoincrement())
+  firstName            String       @db.VarChar(75)
+  lastName             String       @db.VarChar(75)
+  age                  String       @db.VarChar(75)
+  birthDate            DateTime     @db.Date
+  teacherSchoolSubject String       @db.VarChar(75)
+  createdAt            DateTime     @default(now())
+  updatedAt            DateTime     @updatedAt
+  enrollments          Enrollment[]
+}
+
+model Classroom {
+  guid_classroom  Int          @id @default(autoincrement())
+  classroomNumber Int          @default(0)
+  classroomName   String       @db.VarChar(75)
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+  enrollments     Enrollment[]
+}
+
+model Enrollment {
+  guid_enrollment Int       @id @default(autoincrement())
+  student         Student   @relation(fields: [studentId], references: [guid_student])
+  teacher         Teacher   @relation(fields: [teacherId], references: [guid_teacher])
+  classroom       Classroom @relation(fields: [classroomId], references: [guid_classroom])
+  studentId       Int
+  teacherId       Int
+  classroomId     Int
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+}
