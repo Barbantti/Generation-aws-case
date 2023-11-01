@@ -2,7 +2,7 @@ import { Controller, Post, Get, Body, Put, Delete } from '@nestjs/common';
 import { CreateStudentDTO } from './dto/create-student.dto';
 import { UpdateStudentDTO } from './dto/update-student.dto';
 import { StudentService } from './student.service';
-import { ParamId } from 'src/decorator/param-id.decorator';
+import { ParamId } from '../decorator/param-id.decorator';
 
 @Controller('student')
 export class StudentController {

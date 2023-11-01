@@ -2,7 +2,7 @@ import { Controller, Post, Get, Body, Put, Delete } from '@nestjs/common';
 import { EnrollmentService } from './enrollment.service';
 import { CreateEnrollmentDTO } from './dto/create-enrollment.dto';
 import { UpdateEnrollmentDTO } from './dto/update-enrollment.dto';
-import { ParamId } from 'src/decorator/param-id.decorator';
+import { ParamId } from '../decorator/param-id.decorator';
 
 @Controller('enrollment')
 export class EnrollmentController {

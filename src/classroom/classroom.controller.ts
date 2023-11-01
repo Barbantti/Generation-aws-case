@@ -2,7 +2,7 @@ import { Controller, Post, Get, Body, Put, Delete } from '@nestjs/common';
 import { CreateClassroomDTO } from './dto/create-classroom.dto';
 import { UpdateClassroomDTO } from './dto/update-classroom.dto';
 import { ClassroomService } from './classroom.service';
-import { ParamId } from 'src/decorator/param-id.decorator';
+import { ParamId } from '../decorator/param-id.decorator';
 
 @Controller('classroom')
 export class ClassroomController {

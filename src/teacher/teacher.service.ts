@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateTeacherDTO } from './dto/create-teacher.dto';
 import { UpdateTeacherDTO } from './dto/update-teacher.dto';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from '../prisma/prisma.service';
 import * as moment from 'moment';
 
 @Injectable()
