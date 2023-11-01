@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateStudentDTO } from './dto/create-student.dto';
 import { UpdateStudentDTO } from './dto/update-student.dto';
 import { PrismaService } from '../prisma/prisma.service';
-import * as moment from 'moment';
+import moment from 'moment';
 
 @Injectable()
 export class StudentService {
