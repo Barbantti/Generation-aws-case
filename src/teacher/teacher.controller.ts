@@ -3,6 +3,7 @@ import { CreateTeacherDTO } from './dto/create-teacher.dto';
 import { UpdateTeacherDTO } from './dto/update-teacher.dto';
 import { TeacherService } from './teacher.service';
 import { ParamId } from '../decorator/param-id.decorator';
+import { ApiParam } from '@nestjs/swagger';
 
 @Controller('teacher')
 export class TeacherController {
@@ -22,12 +23,20 @@ export class TeacherController {
 
   // Get a teacher by id
   @Get(':id')
+  @ApiParam({
+    name: 'teacherId',
+    description: 'ID do professor',
+  })
   async getTeacherById(@ParamId() teacherId: number) {
     return this.teacherService.getTeacherById(teacherId);
   }
 
   // Update a teacher by id
   @Put(':id')
+  @ApiParam({
+    name: 'teacherId',
+    description: 'ID do professor',
+  })
   async updateTeacher(
     @Body() updateThisTeacher: UpdateTeacherDTO,
     @ParamId() teacherId: number,
@@ -37,6 +46,10 @@ export class TeacherController {
 
   // Delete a teacher by id
   @Delete(':id')
+  @ApiParam({
+    name: 'teacherId',
+    description: 'ID do professor',
+  })
   async deleteTeacher(@ParamId() teacherId: number) {
     return this.teacherService.deleteTeacher(teacherId);
   }

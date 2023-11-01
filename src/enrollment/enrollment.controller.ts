@@ -3,6 +3,7 @@ import { EnrollmentService } from './enrollment.service';
 import { CreateEnrollmentDTO } from './dto/create-enrollment.dto';
 import { UpdateEnrollmentDTO } from './dto/update-enrollment.dto';
 import { ParamId } from '../decorator/param-id.decorator';
+import { ApiParam } from '@nestjs/swagger';
 
 @Controller('enrollment')
 export class EnrollmentController {
@@ -22,12 +23,20 @@ export class EnrollmentController {
 
   // Get a enrollment by id
   @Get(':id')
+  @ApiParam({
+    name: 'enrollmentId',
+    description: 'ID da matricula',
+  })
   async getEnrollmentById(@ParamId() enrollmentId: number) {
     return this.enrollmentService.getEnrollmentById(enrollmentId);
   }
 
   // Update a enrollment by id
   @Put(':id')
+  @ApiParam({
+    name: 'enrollmentId',
+    description: 'ID da matricula',
+  })
   async updateEnrollment(
     @Body() updateThisEnrollment: UpdateEnrollmentDTO,
     @ParamId() enrollmentId: number,
@@ -40,6 +49,10 @@ export class EnrollmentController {
 
   // Delete a enrollment by id
   @Delete(':id')
+  @ApiParam({
+    name: 'enrollmentId',
+    description: 'ID da matricula',
+  })
   async deleteEnrollment(@ParamId() enrollmentId: number) {
     return this.enrollmentService.deleteEnrollment(enrollmentId);
   }

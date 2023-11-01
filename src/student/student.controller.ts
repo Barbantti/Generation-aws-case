@@ -3,6 +3,7 @@ import { CreateStudentDTO } from './dto/create-student.dto';
 import { UpdateStudentDTO } from './dto/update-student.dto';
 import { StudentService } from './student.service';
 import { ParamId } from '../decorator/param-id.decorator';
+import { ApiParam } from '@nestjs/swagger';
 
 @Controller('student')
 export class StudentController {
@@ -22,12 +23,20 @@ export class StudentController {
 
   // Get a student by id
   @Get(':id')
+  @ApiParam({
+    name: 'studentId',
+    description: 'ID do aluno',
+  })
   async getStudentById(@ParamId() studentId: number) {
     return this.studentService.getStudentById(studentId);
   }
 
   // Update a student by id
   @Put(':id')
+  @ApiParam({
+    name: 'studentId',
+    description: 'ID do aluno',
+  })
   async updateStudent(
     @Body() updateThisStudent: UpdateStudentDTO,
     @ParamId() studentId: number,
@@ -37,6 +46,10 @@ export class StudentController {
 
   // Delete a student by id
   @Delete(':id')
+  @ApiParam({
+    name: 'studentId',
+    description: 'ID do aluno',
+  })
   async deleteStudent(@ParamId() studentId: number) {
     return this.studentService.deleteStudent(studentId);
   }
